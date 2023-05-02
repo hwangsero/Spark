@@ -54,5 +54,6 @@ if __name__ == "__main__":
 
     result_rdd = avg_rdd.join(parsed_rdd_titles)
     result_rdd = result_rdd.map(lambda x: (x[1][1], x[1][0]))
-    result_rdd.foreach(print)
-
+    result = result_rdd.collect()
+    result.sort(key=lambda x: x[1], reverse=True)
+    print(result)
